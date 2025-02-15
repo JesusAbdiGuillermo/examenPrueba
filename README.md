@@ -11,37 +11,37 @@ npm (incluido con Node.js)
 ## Instalación
 
 ### 1- Después, entra al proyecto:
-cd mi-proyecto
-npm install
+`cd mi-proyecto`
+
+`npm install`
 
 
 ### 2- Agregar Tailwind CSS  para poder ver los estilos
 
-npm install -D tailwindcss postcss autoprefixer
+`npm install -D tailwindcss postcss autoprefixer`
 
 
 ### 3- Instalar @tailwindcss/postcss dependencias de tailwind CSS
 
-npm install -D @tailwindcss/postcss
+`npm install -D @tailwindcss/postcss`
 
 ### 4 - Instalar axios
-npm install axios
+`npm install axios`
 
 ### 5 - Ejecutar proyecto
-npm run dev
+`npm run dev`
 
 
 
 # Configurar api mi-api
-cd mi-api
+`cd mi-api`
 
-npm init -y
 ## 1- instalar express prisma client
-npm install express @prisma/client cors dotenv
-npm install --save-dev prisma nodemon
+`npm install express @prisma/client cors dotenv`
+`npm install --save-dev prisma nodemon`
 ## 2- ejecutar las migraciones
-npx prisma migrate dev --name inicial
+`npx prisma migrate dev --name inicial`
 ## 3- verificar que se creo la bd con los datos
-npx prisma studio
+`npx prisma studio`
 ## 4- ejecutar server
-npm run dev
+`npm run dev`
