@@ -1,3 +1,7 @@
+# Clona el repositorio en alguna ubicacion
+
+https://github.com/JesusAbdiGuillermo/examenPrueba.git
+
 # Instalar dependecias de mi-proyecto 
 
 Este proyecto utiliza Node.js y npm.
