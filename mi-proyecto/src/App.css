@@ -86,3 +86,11 @@ label{
   font-size: 12px;
 
 }
+small{
+  color: gray;
+}
+
+img.loading{
+  width: 20%;
+  margin-inline: auto
+}

@@ -11,23 +11,35 @@ const ComboBox = () => {
   const [query, setQuery] = useState("");
   const [ShowLoading, setShowLoading] = useState(false);
   const [showCombobox, setshowCombobox] = useState(false);
+  const [showComboboxNoFound, setshowComboboxNoFound] = useState(false);
 
-  const eventos = async (name: string) => {
+  const sleep = (milliseconds : any) => {
+    return new Promise(resolve => setTimeout(resolve, milliseconds))
+}
+  const eventos = async(name: string) => {
     try {
-      await axios.get<Opcion[]>(`http://localhost:3000/search?name=${name}`).then(function (response) {
+      const response = axios.get<Opcion[]>(`http://localhost:3000/search?name=${name}`);
+        
         setShowLoading(true)
-        setOpciones(response.data);
-        if (response.data.length > 0) {
+        setshowCombobox(false)
+        setshowComboboxNoFound(false)
+        //se puso un sleep para quee se note el loading
+        await sleep(3000);
+        const result = (await response).data
+        setOpciones(result);
+        if (result.length > 0) {
           setShowLoading(false)
           setshowCombobox(true)
+          setshowComboboxNoFound(false)
         }
         else {
           setShowLoading(false)
           setshowCombobox(false)
+          setshowComboboxNoFound(true)
         }
 
 
-      });
+      
 
 
     } catch (error) {
@@ -56,12 +68,12 @@ const ComboBox = () => {
       />
       {ShowLoading && (
         <ul id="boxselectorfound" className="absolute left-0 right-0 bg-white border rounded-lg shadow-md mt-1 max-h-40 overflow-y-auto">
-          <img src="/src/gif/loading.gif" />
+          <img className="loading" src="/src/gif/loading.gif" />
         </ul>
       )}
-      {opciones.length == 0 && !showCombobox && (
+      {opciones.length == 0 && showComboboxNoFound && (
         <ul id="boxselectorfound" className="absolute left-0 right-0 bg-white border rounded-lg shadow-md mt-1 max-h-40 overflow-y-auto">
-          <li id="nofound">No result found</li>
+          <li id="nofound"><small>No result found</small></li>
         </ul>
       )}
       {opciones.length > 0 && showCombobox && (
