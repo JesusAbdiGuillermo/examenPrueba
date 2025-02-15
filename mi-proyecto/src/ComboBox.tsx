@@ -54,7 +54,7 @@ const ComboBox = () => {
 
       
     } catch (error) {
-      console.error("Error obteniendo datos:", error);
+      alert("Error obteniendo datos:" + error);
     }
 
 
