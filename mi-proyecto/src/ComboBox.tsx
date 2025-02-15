@@ -32,22 +32,27 @@ const ComboBox = () => {
   }
   const eventos = async(name: string) => {
     try {
-      const response = axios.get<Opcion[]>(`http://localhost:3000/search?name=${name}`);
+      setSelected(name)
+      if(name.length >= 3){
+        const response = axios.get<Opcion[]>(`http://localhost:3000/search?name=${name}`);
         
         setShowLoading(true)
         setshowCombobox(false)
         setshowComboboxNoFound(false)
         //se puso un sleep para quee se note el loading
-        await sleep(3000);
+        await sleep(1000);
         const result = (await response).data
         setOpciones(result);
         funncionesCombobox(result)
         
-
+      }else{
+        setOpciones([])
+        funncionesCombobox([])
+        setshowCombobox(false)
+        setshowComboboxNoFound(false)
+      }
 
       
-
-
     } catch (error) {
       console.error("Error obteniendo datos:", error);
     }
@@ -66,7 +71,7 @@ const ComboBox = () => {
           (e) => {
             
             eventos(e.target.value)
-            setSelected(e.target.value)
+            
             
           }
 
@@ -99,7 +104,7 @@ const ComboBox = () => {
               </div>
               <div className="combo-column2">
                 <p><strong>{item.name}</strong> </p>
-                <p className="sombreado">{item.name}</p>
+                <p className="sombreado">{item.domains.split(',')[0]}</p>
               </div>
             </div>
           ))}

@@ -24,14 +24,21 @@ app.get("/search", async (req, res) => {
   try {
     const apps = await prisma.apps.findMany({
       where: {
-          name: {
-            startsWith: req.query.name,
+          
+        OR: [
+          {
+            name: {
+              startsWith: req.query.name,
+            },
           },
+          { domains: { startsWith: req.query.name } },
+          { id: { startsWith: req.query.name } },
+        ],
         },
     });
     if(req.query.name === "")
       //retorna vacia para cuando no se ingresan palabras
-        res.status(200)({});
+        res.status(200).json({});
     else
         res.status(200).json(apps);
   } catch (error) {
