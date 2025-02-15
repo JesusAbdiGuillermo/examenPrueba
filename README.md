@@ -10,29 +10,24 @@ npm (incluido con Node.js)
 
 ## Instalación
 
-
-### Crear un Proyecto con Vite
-
-npm create vite@latest mi-proyecto --template react-ts
-
-### Después, entra al proyecto:
+### 1- Después, entra al proyecto:
 cd mi-proyecto
 npm install
 
 
-### Agregar Tailwind CSS  para poder ver los estilos
+### 2- Agregar Tailwind CSS  para poder ver los estilos
 
 npm install -D tailwindcss postcss autoprefixer
 
 
-### Instalar @tailwindcss/postcss dependencias de tailwind CSS
+### 3- Instalar @tailwindcss/postcss dependencias de tailwind CSS
 
 npm install -D @tailwindcss/postcss
 
-### Instalar axios
+### 4 - Instalar axios
 npm install axios
 
-### Ejecutar proyecto
+### 5 - Ejecutar proyecto
 npm run dev
 
 
@@ -41,8 +36,12 @@ npm run dev
 cd mi-api
 
 npm init -y
+## 1- instalar express prisma client
 npm install express @prisma/client cors dotenv
 npm install --save-dev prisma nodemon
-
-## ejecutar server
+## 2- ejecutar las migraciones
+npx prisma migrate dev --name inicial
+## 3- verificar que se creo la bd con los datos
+npx prisma studio
+## 4- ejecutar server
 npm run dev
