@@ -36,8 +36,12 @@ npm run dev
 cd mi-api
 
 npm init -y
+## 1- instalar express prisma client
 npm install express @prisma/client cors dotenv
 npm install --save-dev prisma nodemon
-
-## ejecutar server
+## 2- ejecutar las migraciones
+npx prisma migrate dev --name inicial
+## 3- verificar que se creo la bd con los datos
+npx prisma studio
+## 4- ejecutar server
 npm run dev
