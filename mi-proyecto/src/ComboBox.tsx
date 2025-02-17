@@ -8,7 +8,6 @@ interface Opcion {
 
 const ComboBox = () => {
   const [opciones, setOpciones] = useState<Opcion[]>([]);
-  const [query, setQuery] = useState("");
   const [ShowLoading, setShowLoading] = useState(false);
   const [showCombobox, setshowCombobox] = useState(false);
   const [selected, setSelected] = useState<string | "">("");
@@ -91,8 +90,8 @@ const ComboBox = () => {
       )}
       {opciones.length > 0 && showCombobox && (
         <ul id="boxselector" className="absolute left-0 right-0 bg-white border rounded-lg shadow-md mt-1 max-h-40 overflow-y-auto">
-          {opciones.map((item, index) => (
-            <div className="combo-row pointer" id={item.id} onClick={(e) => {
+          {opciones.map((item, _index) => (
+            <div className="combo-row pointer" id={item.id} onClick={(_e) => {
               setshowCombobox(false)
               setOpciones([]);
               setSelected(item.name);
