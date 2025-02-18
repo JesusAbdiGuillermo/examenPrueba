@@ -24,7 +24,6 @@ app.get("/search", async (req, res) => {
   try {
     const apps = await prisma.apps.findMany({
       where: {
-          
         OR: [
           {
             name: {
@@ -60,6 +59,44 @@ var data  = req.body;
     res.status(500).json({ error: `Error al crear app ${error}` });
   }
 });
+
+app.delete("/delete", async (req, res) => {
+  const {id} = req.body;
+    console.log(`data : ${id}`);
+    try {
+      const deleted = await prisma.apps.delete({
+        where: {
+          id: id,
+        },
+      })
+      res.json(deleted);
+    } catch (error) {
+      res.status(500).json({ error: `Error al crear app ${error}` });
+    }
+  });
+  
+
+  app.put("/update", async (req, res) => {
+    const {id , name , domains} = req.body;
+      console.log(`id : ${id}`);
+      console.log(`name : ${name}`);
+      console.log(`domains : ${domains}`);
+      try {
+        const deleted = await prisma.apps.update({
+          where: {
+            id: id,
+          },
+          data:{
+             name :name,
+             domains : domains
+
+          }
+        })
+        res.json(deleted);
+      } catch (error) {
+        res.status(500).json({ error: `Error al crear app ${error}` });
+      }
+    });
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
